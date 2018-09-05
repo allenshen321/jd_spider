@@ -2,13 +2,11 @@
 import requests
 import json
 import queue
-import random
 
 
 def get_ip_port_queue():
     r = requests.get('http://127.0.0.1:8000/?count=30')
     ip_ports = json.loads(r.text)
-    # print(ip_ports)
     ip_port_queue = queue.Queue(30)
     for each in ip_ports:
         ip_port_queue.put(each[0] + ':' + str(each[1]))
